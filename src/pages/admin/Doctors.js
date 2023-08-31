@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import axios from 'axios';
 import { Table, message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Doctors = () => {
 
   const [doctors,setDoctors] = useState([]);
+  // const [singledoctors,setsingleDoctors] = useState([]);
+  const navigate = useNavigate();
 
   const getDoctors = async ()=>{
     try {
@@ -41,6 +44,27 @@ const Doctors = () => {
     }
   };
 
+  // const handleprofile = async (record) => {
+  //   try {
+  //     const res = await axios.get("/api/v1/admin/getsingleprofile",{ doctorId: record._id},{
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     );
+  //     console.log(record._id);
+  //     if (res.data.success) {
+  //       console.log(res.data.data)
+  //       setsingleDoctors(res.data.data)
+  //     }
+  //     console.log(singledoctors);
+  //     console.log("got the profile");
+  //   } catch (error) {
+  //     message.error("Something Went Wrong");
+  //   }
+  // };
+
+
   useEffect(()=>{
     getDoctors();
   },[])
@@ -52,6 +76,7 @@ const Doctors = () => {
       render: (text, record) => (
         <span>
           {record.firstName} {record.lastName}
+          <button className="btn btn-outline-secondary btn-sm mx-1" onClick={() => navigate(`/admin/doctor/profile/${record._id}`)}>Full Profile</button>
         </span>
       ),
     },
@@ -71,7 +96,7 @@ const Doctors = () => {
           {record.status === "pending" ? (
             <>
               <button className="btn btn-success mx-1" onClick={()=>handleAccountStatus(record,"approved")}>Approve</button>
-              <button className="btn btn-success mx-1" onClick={()=>handleAccountStatus(record,"rejected")}>Reject</button>
+              <button className="btn btn-danger mx-1" onClick={()=>handleAccountStatus(record,"rejected")}>Reject</button>
             </>
           ) : (
             <>

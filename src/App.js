@@ -19,6 +19,7 @@ import Doctors from './pages/admin/Doctors';
 import Profile from './pages/doctor/Profile';
 import BookingPage from './pages/BookingPage';
 import Appointments from './pages/Appointments';
+import DoctorProfile from './pages/admin/DoctorProfile';
 // import DoctorList from './components/DoctorList';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path='/register' element={<PublicRoute><Register/></PublicRoute>}/>
             <Route path='/doctor/book-appointment/:id' element={<ProtectedRoutes><BookingPage/></ProtectedRoutes>}/>
             <Route path='/appointments' element={<ProtectedRoutes><Appointments/></ProtectedRoutes>}/>
+            <Route path='/admin/doctor/profile/:id' element={<ProtectedRoutes><DoctorProfile/></ProtectedRoutes>}/>
             {/* <Route path='/doctorlist' element={<PublicRoute><DoctorList/></PublicRoute>}/> */}
         </Routes>
         }
