@@ -172,4 +172,5 @@ const getAllNotificationController = async (req, res) => {
     }
   }
 
+
 module.exports = {loginController,registerController,authcontroller,applyDoctorController,getAllNotificationController,deleteAllNotificationController,getAllDocotrsController,bookAppointmentController,userAppointmentController,UpdateAppointmentController}
